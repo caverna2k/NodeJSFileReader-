@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/caverna2k/NodeJSFileReader-/issues"
   },
-  "homepage": "https://github.com/caverna2k/NodeJSFileReader-#readme"
+  "homepage": "https://github.com/caverna2k/NodeJSFileReader-#readme",
+  "dependencies": {
+    "promise": "^8.1.0"
+  }
 }

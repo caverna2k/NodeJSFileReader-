@@ -1,9 +1,8 @@
 {
     "cSpell.ignoreWords": [
-        "file",
-        "js",
-        "node",
-        "node js file reader",
-        "reader"
-    ]
+        "e",
+        "promises",
+        "sigla"
+    ],
+    "cSpell.language": ",pt,pt_PT"
 }
