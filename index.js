@@ -1,5 +1,4 @@
 console.log('ini');
-import promise from 'promise';
 import Cidade from './cidade.js';
 import Estado from './estado.js';
 import { promises as fs } from 'fs';
@@ -36,9 +35,11 @@ async function init() {
 
 async function listarTop5EstadosMaisCidades() {
   let stats = estados
+
     .sort((a, b) => a.cidades.length - b.cidades.length)
     .slice(-5)
     .reverse()
+
     .map((obj) => obj.nome + '-' + obj.cidades.length);
 
   console.log(`Estados com mais cidades ${stats}`);
@@ -55,7 +56,7 @@ async function listarTop5EstadosMenosCidades() {
 }
 
 async function listarCidadesComMaiorNome() {
-  let stats = estados.map((estado) =>
+  let stats = estados.sort(orderEstado).map((estado) =>
     estado.cidades
       .sort(ordemBasica)
       .reverse()
@@ -76,9 +77,9 @@ async function listarCidadesComMaiorNome() {
 }
 
 async function listarCidadesComMenorNome() {
-  let stats = estados.map((estado) =>
+  let stats = estados.sort(orderEstado).map((estado) =>
     estado.cidades
-      .sort(ordemBasica)
+      .sort(ordemBasicaDown)
       .slice(0, 1)
       .map(
         (cidade) =>
@@ -203,7 +204,18 @@ async function criarArquivosDeEstado() {
 
 function ordemBasica(a, b) {
   if (a.nome.length === b.nome.length) {
-    return a.nome - b.nome;
+    return ('' + b.nome).localeCompare(a.nome);
   }
   return a.nome.length - b.nome.length;
+}
+
+function ordemBasicaDown(a, b) {
+  if (a.nome.length === b.nome.length) {
+    return ('' + a.nome).localeCompare(b.nome);
+  }
+  return a.nome.length - b.nome.length;
+}
+
+function orderEstado(a, b) {
+  return ('' + a.sigla).localeCompare(b.sigla);
 }
